@@ -12,21 +12,30 @@
 <body>
   <div class="bg-indigo-900 min-h-screen p-10">
     <div class="bg-white rounded p-5 max-w-xl mx-auto">
-      <h4 class="font-semibold text-xl">Request a Courier Pickup!</h4>
-      <div class="my-5 space-y-5">
-        <div class="grid grid-cols-2 gap-5">
-          <input type="text" name="name" class="form-input" placeholder="Name">
-          <input type="number" min="0" name="number" class="form-input" placeholder="Number">
+      <h4 class="font-semibold text-xl">Request a Courier Pickup!!!</h4>
+      <form class="my-5 space-y-5" method="post" id="courierRequestForm">
+        <div class="grid grid-cols-2 gap-x-5">
+          <div>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Name" required>
+          </div>
+          <div>
+            <input type="text" id="number" name="number" class="form-input" placeholder="Number" required>
+          </div>
         </div>
-        <input type="datetime-local" name="pickup" class="form-input" placeholder="Pickup Date">
-        <textarea name="pickup-area" id="pickupArea" cols="30" rows="4" class="form-input"
-          placeholder="Enter your pickup address"></textarea>
+        <div>
+          <input type="datetime-local" id="pickupDate" name="pickup-date" class="form-input" placeholder="Pickup Date"
+            required>
+        </div>
+        <div>
+          <textarea name="pickup-area" id="pickupArea" cols="30" rows="4" class="form-input"
+            placeholder="Enter your pickup address" required></textarea>
+        </div>
         <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded w-full hover:bg-indigo-700">Create
           Pickup</button>
-      </div>
+      </form>
     </div>
 
-    <div class="bg-white rounded p-5 max-w-xl mx-auto my-10">
+    <div class="bg-white rounded p-5 max-w-xl mx-auto my-10 hidden">
       <h4 class="font-semibold text-xl">Courier Request</h4>
       <div class="my-5 space-y-5">
         <table class="table table-fixed border w-full">
@@ -55,7 +64,12 @@
   </div>
 
 
-  <script type="module" src="/src/main.js"></script>
+
+
+
+
+  <!-- JavaScript Link -->
+  <script type="module" src="./src/js/main.js"></script>
 </body>
 
 </html>
