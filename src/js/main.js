@@ -1,5 +1,5 @@
 import JustValidate from 'just-validate';
-import { rule } from 'postcss';
+import { formatMyData } from '/src/js/utils';
 
 const formEl = document.getElementById("courierRequestForm")
 
@@ -132,7 +132,7 @@ function getAllCourierDatas() {
             td2El.textContent = courierData.number
 
             td3El.classList.add("px-2", "py-1", "border");
-            td3El.textContent = courierData["pickup-date"]
+            td3El.textContent = formatMyData(courierData["pickup-date"]);
 
             td4El.classList.add("px-2", "py-1", "border");
             td4El.textContent = courierData["pickup-area"]
