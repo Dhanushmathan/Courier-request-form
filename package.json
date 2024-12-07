@@ -15,6 +15,7 @@
     "vite": "^6.0.1"
   },
   "dependencies": {
+    "dayjs": "^1.11.13",
     "just-validate": "^4.3.0"
   }
 }
