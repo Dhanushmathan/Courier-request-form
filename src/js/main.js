@@ -1,5 +1,7 @@
 import JustValidate from 'just-validate';
 import { formatMyData } from '/src/js/utils';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const formEl = document.getElementById("courierRequestForm")
 
@@ -65,6 +67,9 @@ validateForm.onSuccess(() => {
 
     const formData = new FormData(formEl);
 
+    formData.append("id", uuidv4());
+    formData.append("createdAt", Date.now());
+
     const formValObj = Object.fromEntries(formData.entries());
 
     let newCorierData = [];
@@ -89,6 +94,7 @@ validateForm.onSuccess(() => {
     }
 
     alert("Corier Request submitted successfully!");
+    getAllCourierDatas()
     formEl.reset();
 });
 
@@ -102,6 +108,10 @@ function getAllCourierDatas() {
     // Write those values into the table UI
     const tableEL = document.getElementById("courierDataTable")
 
+    const tableBodyEl = document.getElementById("courierDataTbody")
+
+    tableBodyEl.innerHTML = "";
+
     const fragment = document.createDocumentFragment()
 
     if (courierDataArr) {
@@ -109,10 +119,10 @@ function getAllCourierDatas() {
         const courierCardEl = document.querySelector("#courierCard");
         courierCardEl.classList.remove("hidden");
 
-        const finalData = courierDataArr.map((courierData) => {
+        courierDataArr.map((courierData, index) => {
 
             const trEl = document.createElement("tr");
-            const tdCoustomerEL = document.createElement("td");
+            const tdCoustomerNoEL = document.createElement("td");
             const tdEl = document.createElement("td");
             const td2El = document.createElement("td");
             const td3El = document.createElement("td");
@@ -122,8 +132,8 @@ function getAllCourierDatas() {
 
             trEl.classList.add("px-2", "py-1", "border");
 
-            // tdCoustomerEL.classList.add("px-2", "py-1", "border");
-            // tdCoustomerEL.textContent = index + 1;
+            tdCoustomerNoEL.classList.add("px-2", "py-1", "border");
+            tdCoustomerNoEL.textContent = index + 1;
 
             tdEl.classList.add("px-2", "py-1", "border");
             tdEl.textContent = courierData.name
@@ -144,19 +154,18 @@ function getAllCourierDatas() {
             td5El.append(deleteBtnEl);
 
 
-            trEl.append(tdEl, td2El, td3El, td4El, td5El)
+            trEl.append(tdCoustomerNoEL, tdEl, td2El, td3El, td4El, td5El)
             fragment.append(trEl)
         });
-        tableEL.append(fragment);
+        tableBodyEl.append(fragment);
+
+        // display the UI with those datas
+        const courierCount = document.getElementById("courierCount");
+        courierCount.textContent = tableEL.tBodies[0].rows.length;
 
     } else {
         console.log("No value available on localStorage");
     };
-
-
-
-    // display the UI with those datas
-
 
 }
 getAllCourierDatas()

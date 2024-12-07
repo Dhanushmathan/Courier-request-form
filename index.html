@@ -11,7 +11,7 @@
 
 <body>
   <div class="bg-gradient-to-r from-darkBlue bg-blue-400 min-h-screen p-10">
-    <div class="bg-white rounded p-5 max-w-xl mx-auto">
+    <div class="bg-white rounded p-5 max-w-xl mx-auto shadow-lg">
       <h4 class="font-semibold text-xl">Request a Courier Pickup!!!</h4>
       <form class="my-5 space-y-5" method="post" id="courierRequestForm">
         <div class="grid grid-cols-2 gap-x-5">
@@ -35,12 +35,16 @@
       </form>
     </div>
 
-    <div class="bg-white rounded p-5 max-w-6xl mx-auto my-10 hidden" id="courierCard">
-      <h4 class="font-semibold text-xl">Courier Request</h4>
+    <div class="bg-white rounded p-5 max-w-6xl mx-auto my-10 hidden shadow-lg" id="courierCard">
+      <div class="flex items-center space-x-4">
+        <h4 class="font-semibold text-xl">Courier Request</h4>
+        <span class="px-5 py-1 bg-blue-600 text-white rounded-full text-sm font-semibold" id="courierCount">0</span>
+      </div>
       <div class="my-5 space-y-5">
         <table class="table table-fixed border w-full text-center" id="courierDataTable">
           <thead>
             <tr>
+              <th class="px-2 py-1 border w-20">C.No</th>
               <th class="px-2 py-1 border">Customer</th>
               <th class="px-2 py-1 border">Mobile</th>
               <th class="px-2 py-1 border">Pickup Date</th>
@@ -48,6 +52,9 @@
               <th class="px-2 py-1 border w-20"></th>
             </tr>
           </thead>
+          <tbody id="courierDataTbody">
+
+          </tbody>
         </table>
       </div>
     </div>

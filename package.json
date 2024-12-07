@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.13",
-    "just-validate": "^4.3.0"
+    "just-validate": "^4.3.0",
+    "uuid": "^11.0.3"
   }
 }
