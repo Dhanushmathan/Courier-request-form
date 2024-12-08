@@ -6,8 +6,8 @@ A user-friendly and responsive courier request form, Simple courier pickuping ap
 
  - [x] Form Validation
  - [x] Save it LocalStorage (Storage Options)
- - [ ] Show Courier request based on state
- - [ ] Other CRUD Operations
+ - [x] Show Courier request based on state
+ - [x] Other CRUD Operations
 
 
 ### License: MIT (DO whatever, you want)
