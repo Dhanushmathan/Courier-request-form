@@ -1,6 +1,7 @@
 import JustValidate from 'just-validate';
 import { formatMyData } from '/src/js/utils';
 import { v4 as uuidv4 } from 'uuid';
+import { rule } from 'postcss';
 
 
 const formEl = document.getElementById("courierRequestForm")
@@ -62,6 +63,15 @@ validateForm.addField("#pickupArea", [
     { errorLabelCssClass: ["form-error"] },
 )
 
+validateForm.addField("#agreements", [
+    {
+        rule: "required",
+        errorMessage: "You need to accept the terms and conditions",     // coustom ah errormessage use panni requried mathalam
+    },
+],
+    { errorLabelCssClass: ["form-error"] },
+)
+
 
 validateForm.onSuccess(() => {
 
@@ -114,9 +124,10 @@ function getAllCourierDatas() {
 
     const fragment = document.createDocumentFragment()
 
-    if (courierDataArr) {
+    const courierCardEl = document.querySelector("#courierCard");
 
-        const courierCardEl = document.querySelector("#courierCard");
+    if (courierDataArr && courierDataArr.length > 0) {
+
         courierCardEl.classList.remove("hidden");
 
         courierDataArr.map((courierData, index) => {
@@ -150,6 +161,10 @@ function getAllCourierDatas() {
             deleteBtnEl.className = "px-2 py-1 rounded bg-red-500 hover:bg-red-600 text-white text-sm";
             deleteBtnEl.textContent = "Delete";
 
+            deleteBtnEl.addEventListener("click", (e) => {
+                deleteCourierRequest(courierData);
+            })
+
             td5El.classList.add("px-2", "py-1", "border");
             td5El.append(deleteBtnEl);
 
@@ -164,8 +179,27 @@ function getAllCourierDatas() {
         courierCount.textContent = tableEL.tBodies[0].rows.length;
 
     } else {
+        courierCardEl.classList.add("hidden");
+
         console.log("No value available on localStorage");
     };
+}
+
+function deleteCourierRequest(courierRequest) {
+    const confirmation = confirm(`Do you want to delete ${courierRequest['name']} record?`);
+
+    if (confirmation) {
+        const existingCourierData = localStorage.getItem(localStorageKey)
+        const courierDataObj = JSON.parse(existingCourierData)
+
+        const otherRecord = courierDataObj.filter((courierReq) => courierReq.id != courierRequest['id']);
+
+        // Push it to localStorage again,
+        localStorage.setItem(localStorageKey, JSON.stringify(otherRecord));
+
+        getAllCourierDatas()
+    }
 
 }
+
 getAllCourierDatas()

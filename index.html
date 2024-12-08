@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="Courier app to track your request">
+  <meta property="og:description" content="Courier app to track your request">
+  <meta property="og:image" content="https://cdn.pixabay.com/photo/2016/02/21/20/24/courier-1214227_1280.jpg" />
   <title>Courier Request Form</title>
 
   <link rel="stylesheet" href="./src/css/style.css">
@@ -30,6 +33,12 @@
           <textarea name="pickup-area" id="pickupArea" cols="30" rows="4" class="form-input"
             placeholder="Enter your pickup address" required></textarea>
         </div>
+        <div>
+          <label for="agreements">
+            <input type="checkbox" name="agreements" id="agreements" required>
+            I accept all terms and conditions
+          </label>
+        </div>
         <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded w-full hover:bg-indigo-700">Create
           Pickup</button>
       </form>
@@ -38,7 +47,7 @@
     <div class="bg-white rounded p-5 max-w-6xl mx-auto my-10 hidden shadow-lg" id="courierCard">
       <div class="flex items-center space-x-4">
         <h4 class="font-semibold text-xl">Courier Request</h4>
-        <span class="px-5 py-1 bg-blue-600 text-white rounded-full text-sm font-semibold" id="courierCount">0</span>
+        <span class="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-semibold" id="courierCount">0</span>
       </div>
       <div class="my-5 space-y-5">
         <table class="table table-fixed border w-full text-center" id="courierDataTable">
