@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    base: "/Courier-request-form/"
+    base: '/Courier-request-form/',
 })
